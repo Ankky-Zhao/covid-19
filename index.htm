@@ -1,0 +1,58 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>COVID-19-Dashboard</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- 强制360浏览器用WebKit内核 -->
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <link type="text/css" rel="stylesheet" href="css/base.css" />
+    <link href="images/title.ico" rel="shortcut icon" />             <!-- title graphic -->
+    <!-- 开源库jQuery -->
+    <script src="lib/jquery-1.11.2.min.js"></script>
+    <!-- 系统首页功能库 -->
+    <script type="text/javascript" src="js/init.js"></script>
+
+</head>
+<body>
+    <div id="header">
+        <a class="logo">
+            <img src="images/logo.png" />            
+            <span> 全球 COVID-19 仪表板</span>
+        </a>
+    </div>
+    
+    <div id="content">
+        <div class="leftsidebar_box">
+            <div class="line"></div>
+            <dl class="ChCovid">
+                <dt>中国疫情情况</dt>
+                <dd onclick="setCore('chcase', 'ChCovid')">确诊病例</dd>       <!-- 新增、累计，pop,小框（显示数字，从大到小排列）-->
+                <dd onclick="setCore('chrecover', 'ChCovid')">治愈病例</dd>    <!-- 新增、累计 -->
+                <dd onclick="setCore('chdeath', 'ChCovid')">死亡人数</dd>       <!-- 新增、累计 --> 
+                <dd onclick="setCore('chvaccine', 'ChCovid')">疫苗接种</dd>      <!-- 新增、累计 -->
+                <dd onclick="setCore('chmedicine', 'ChCovid')">医疗资源需求</dd>
+                <dd onclick="setCore('chstatistic', 'ChCovid')">疫情数据统计</dd>         <!-- 总+各省市、病例/死亡/治愈 -->
+                <dd onclick="setCore('chchange', 'ChCovid')">疫情演变演示</dd>         <!-- 总+各省市、病例/死亡/治愈，动态，热度图-->
+                <dd onclick="setCore('chdiscussion', 'ChCovid')">Covid-19舆情信息</dd>       <!-- 各省市：增病与热词讨论量（t），讨论热度前十省份（t：天/周/月，动态）高频词可视化（量/云可视）-->
+            </dl>
+
+            <dl class="Covid">
+                <dt>全球疫情情况</dt>
+                <dd onclick="setCore('case', 'Covid')">确诊病例</dd>       <!-- 新增、累计，pop,小框（显示数字，从大到小排列）-->
+                <dd onclick="setCore('recover', 'Covid')">治愈病例</dd>    <!-- 新增、累计 -->
+                <dd onclick="setCore('death', 'Covid')">死亡人数</dd>       <!-- 新增、累计 --> 
+                <dd onclick="setCore('vaccine', 'Covid')">疫苗接种</dd>  <!-- 新增、累计 -->
+                <dd onclick="setCore('medicine', 'Covid')">医疗资源需求</dd>
+                <dd onclick="setCore('statistic', 'Covid')">疫情数据统计</dd>         <!-- 总+各国、病例/死亡/治愈 -->
+                <dd onclick="setCore('change', 'Covid')">疫情演变演示</dd>         <!-- 总+各国、病例/死亡/治愈，动态，热度图-->
+                <dd onclick="setCore('discussion', 'Covid')">Covid-19舆情信息</dd>       <!-- 各国：增病与热词讨论量（t），讨论热度前十省份（t：天/周/月，动态）高频词可视化（量/云可视）-->
+            </dl>
+
+        </div>
+        <div class="iframe_wrapper">
+            <iframe id="container_iframe" name="container_iframe" scrolling="no"></iframe>
+        </div>
+    </div>
+</body>
+</html>
