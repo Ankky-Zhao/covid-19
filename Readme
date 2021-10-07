@@ -1,4 +1,100 @@
-# GIS系统设计与实践大作业：赵安琪  2018302141266
+# GIS System Design and Practice Big Assignment
+------------------------------------------------------------------------
+General framework design.
+1. Create corresponding folders to hold different resources
+  (1) content:the interface implemented in the right container
+     A.ChCovid:Implement the interface to present the epidemic situation in China (no function implemented, content is empty)
+     B.Covid: interface for global epidemic situation (partly implemented)
+       a.Echarts-nCov (implemented function, separate folder for the purpose of separating it from the unimplemented function)
+       (use Echart to achieve the function, including css style design, js data acquisition and library acquisition, each page code)
+       b. Page code for eight functions in the case of a global epidemic
+       (achieved partly through the introduction of Echarts-nCov in the implementation of the page to obtain)
+  (2)css:style settings for the main interface
+  (3) js: the main interface framework functions
+  (4)lib:external libraries needed for the main interface
+  (5) index: the main interface page code writing
+------------------------------------------------------------------------
+The overall interface is divided into two parts.
+General framework.
+Left: Function selection list
+    1. China epidemic situation
+    2. Global epidemic situation 
+    (where each section is divided into eight modules: {
+       1. Confirmed cases 2. Cured cases 3. Deaths 4. Vaccinations
+       5. Medical needs 6. Statistics on the epidemic
+      7. demonstration of the evolution of the epidemic 8. information on the Covid-19 public opinion}
+
+Right: Content presentation
+-------------------------------------------------------------------------
+Detailed design.
+1. Map presentation (including cumulative global diagnoses, cures, deaths).
+  (1) Use flex layout to design map interface:map.css
+  (2) Rendering the world map: world.js
+  (3) fetch data and process it to form a usable json file and read and assign it to the variable data(case.js,cure.js,dead.js,data fetch function: ajax)
+  (4) use the echarts function to achieve one-to-one correspondence between data and area, and mouse hover to display the data, as well as according to the value of the area to fill the colour and draw the legend
+  (5) Write code for the corresponding function page
+2. Statistical chart presentation (three parts)
+  (1) the use of flex layout design statistical chart interface, divided into two parts, the upper left Nightingale rose chart, the lower for the line graph, the right for the first fifteen countries sectoral distribution chart:map.css
+  (2) the initialization of ECharts, specify the configuration items and data
+  (3) configuration items set to ECarts instance object, which is an important step to obtain data and assign the corresponding variables to the chart (data acquisition function: ajax)
+  (4) Write the code for the corresponding function page
+-------------------------------------------------------------------------
+Implemented functions.
+Global epidemic situation.
+1. Cumulative confirmed cases: the number of confirmed cases in each country in the world is presented in red, with a pop-up window showing the name of the place, the type of data and the number of confirmed cases when the mouse is hovered (content.Covid.case-->content.Covid.Echarts-nCov.acase)
+2. Cumulative cures: green tint to show the cumulative number of cases cured by country worldwide, with a pop-up window showing the name of the place, type of data and number of cures when hovering (content.Covid.recover-->content.Covid.Echarts-nCov.acure)
+3. Cumulative deaths: black colour rendering of the cumulative number of deaths by country worldwide, with pop-up windows for place name, data type, number of deaths when hovering (content.Covid.death-->content.Covid.Echarts-nCov.adead)
+4. graphical statistics (Covid.statistic-->Echarts-nCov.astatistic).
+(1) Nightingale rosettes of the cumulative distribution of confirmed diagnoses by continent.
+(2) Line graph of global epidemic trends (overall number of confirmed diagnoses, number of deaths over time)
+(3) Sectoral distribution of the top 15 countries in the world in terms of cumulative confirmed infections
+
+(Note: the remaining unimplemented functions (e.g. China's epidemic situation) exist in the project in html but without content)
+--------------------------------------------------------------------------
+Interfaces.
+(1) Within the framework of.
+A. Style files.
+base.css main frame layout and other page styles, style settings for the main interface (css)
+chart.css global epidemic data graphical statistics interface styling (content.Covid.Echarts-nCov.css)
+map.css Styling of the cumulative diagnoses, cumulative cures, cumulative deaths interface for the global epidemic situation (content.Covid.Echarts-nCov.css)
+
+B. Function files.
+init.js implements all the functions of the main interface framework (js)
+case.js implements the functions of the graphical statistics and global cumulative diagnosis interface (content.Covid.Echarts-nCov.js)
+cure.js implements the global cumulative cure interface (content.Covid.Echarts-nCov.js)
+dead.js implements the global cumulative death interface (content.Covid.Echarts-nCov.js)
+
+C.Library files.
+echarts.min.js calls the echarts API to use its functions
+flexible.js calls the flexible API layout
+jquery.js calls the jquery API to get data from a json file
+world.js call the world map js file
+
+(2) Outside the framework (epidemic data source [Tencent]).
+https://view.inews.qq.com/g2/getOnsInfo?name=disease_h5 (domestic epidemics)
+https://api.inews.qq.com/newsqa/v1/automation/modules/list?modules=FAutoGlobalStatis,FAutoContinentStatis,FAutoGlobalDailyList, FAutoCountryConfirmAdd (overseas daily epidemic)
+https://api.inews.qq.com/newsqa/v1/automation/foreign/country/ranklist (epidemic status in other countries)
+--------------------------------------------------------------------------
+Data.
+(1) Map data: world.js 
+(2) Epidemic data.
+   Access source: Tencent
+   Method: API link
+   Features: real-time update
+   Data processing: functions: ajax, js generated by extracting the required data as needed (case.js, cure.js, dead.js)
+   Data model: map display: {'name':'';value:''}
+            Nightingale rose map,sector distribution:{'name':'';value:''}
+            Global epidemic trend line chart:{'date':'','value1':'','value2':''}
+--------------------------------------------------------------------------
+Summary.
+Although this interface looks relatively rudimentary, it is not easy for a novice who is not even very good at languages to design and consult various sources while learning how to implement an interface.
+The hardest part was getting the data. Even with the data sources, the process of processing the sources to generate the various js files that could be used took a long time, as the content was so rich that it was necessary to selectively pick the information and form its own structure.
+In the end, I was able to get some of the functionality implemented, albeit in a rudimentary way, but it was still a great achievement.
+The overall system design is very fleshed out, and I hope to be able to slowly fill it out after the course to make a truly informative visualisation system of the epidemic.
+
+中文：
+
+# GIS系统设计与实践大作业
 ------------------------------------------------------------------------
 总体框架设计：
 1.创建对应文件夹，用来存放不同资源
